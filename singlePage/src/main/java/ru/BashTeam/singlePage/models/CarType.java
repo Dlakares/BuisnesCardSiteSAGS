@@ -20,13 +20,25 @@ public class CarType {
     @OneToMany(mappedBy = "type")
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<CarModel> models;
+    @OneToMany(mappedBy = "type")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private List<CarGeneration> generations;
+    @OneToMany(mappedBy = "type")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private List<CarSerie> series;
+    @OneToMany(mappedBy = "type")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private List<CarModification> modifications;
     public CarType() {
     }
 
-    public CarType(String name, List<CarMark> marks, List<CarModel> models) {
+    public CarType(String name, List<CarMark> marks, List<CarModel> models, List<CarGeneration> generations, List<CarSerie> series, List<CarModification> modifications) {
         this.name = name;
         this.marks = marks;
         this.models = models;
+        this.generations = generations;
+        this.series = series;
+        this.modifications = modifications;
     }
 
     public int getId() {
@@ -35,6 +47,30 @@ public class CarType {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<CarModification> getModifications() {
+        return modifications;
+    }
+
+    public void setModifications(List<CarModification> modifications) {
+        this.modifications = modifications;
+    }
+
+    public List<CarSerie> getSeries() {
+        return series;
+    }
+
+    public void setSeries(List<CarSerie> series) {
+        this.series = series;
+    }
+
+    public List<CarGeneration> getGenerations() {
+        return generations;
+    }
+
+    public void setGenerations(List<CarGeneration> generations) {
+        this.generations = generations;
     }
 
     public List<CarModel> getModels() {
