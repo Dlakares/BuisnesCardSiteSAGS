@@ -1,9 +1,15 @@
 package ru.BashTeam.singlePage.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "Car_modification")
+@Getter
+@Setter
+@NoArgsConstructor
 public class CarModification {
     @Id
     @Column(name = "id_car_modification")
@@ -21,53 +27,10 @@ public class CarModification {
     @JoinColumn(name = "id_car_type", referencedColumnName = "id")
     private CarType type;
 
-    public CarModification() {
-    }
-
     public CarModification(String name, CarSerie serie, CarModel model, CarType type) {
         this.name = name;
         this.serie = serie;
         this.model = model;
-        this.type = type;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public CarSerie getSerie() {
-        return serie;
-    }
-
-    public void setSerie(CarSerie serie) {
-        this.serie = serie;
-    }
-
-    public CarModel getModel() {
-        return model;
-    }
-
-    public void setModel(CarModel model) {
-        this.model = model;
-    }
-
-    public CarType getType() {
-        return type;
-    }
-
-    public void setType(CarType type) {
         this.type = type;
     }
 }
