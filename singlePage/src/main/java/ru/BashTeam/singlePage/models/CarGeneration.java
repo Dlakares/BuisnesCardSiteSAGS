@@ -1,14 +1,14 @@
 package ru.BashTeam.singlePage.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "Car_generation")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class CarGeneration {
     @Id
@@ -22,13 +22,13 @@ public class CarGeneration {
     @Column(name = "year_end")
     private String yearEnd;
     @ManyToOne
-    @JoinColumn(name = "id_car_model", referencedColumnName = "id")
+    @JoinColumn(name = "id_car_model")
     private CarModel model;
     @ManyToOne
-    @JoinColumn(name = "id_car_type", referencedColumnName = "id")
+    @JoinColumn(name = "id_car_type")
     private CarType type;
     @ManyToOne
-    @JoinColumn(name = "id_car_serie", referencedColumnName = "id")
+    @JoinColumn(name = "id_car_serie")
     private CarSerie serie;
 
     public CarGeneration(String name, String yearBegin, String yearEnd, CarModel model, CarType type, CarSerie serie) {

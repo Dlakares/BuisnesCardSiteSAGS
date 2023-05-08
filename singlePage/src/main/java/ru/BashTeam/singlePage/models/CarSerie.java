@@ -1,6 +1,7 @@
 package ru.BashTeam.singlePage.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,8 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "car_serie")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class CarSerie {
     @Id
@@ -21,13 +21,13 @@ public class CarSerie {
     @Column(name = "name")
     private String name;
     @ManyToOne
-    @JoinColumn(name = "id_car_model", referencedColumnName = "id")
+    @JoinColumn(name = "id_car_model")
     private CarModel model;
     @OneToMany(mappedBy = "serie")
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<CarGeneration> generations;
     @ManyToOne
-    @JoinColumn(name = "id_car_type", referencedColumnName = "id")
+    @JoinColumn(name = "id_car_type")
     private CarType type;
     @OneToMany(mappedBy = "serie")
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)

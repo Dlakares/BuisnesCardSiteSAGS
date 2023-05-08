@@ -1,6 +1,7 @@
 package ru.BashTeam.singlePage.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,8 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Car_type")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class CarType {
     @Id
