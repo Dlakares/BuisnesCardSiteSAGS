@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.BashTeam.singlePage.models.*;
 import ru.BashTeam.singlePage.repositories.*;
+import ru.BashTeam.singlePage.utils.CarException;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +30,7 @@ public class CarsService {
 
     public CarCharacteristic getCarCharacteristic(int id) {
         Optional<CarCharacteristic> getCharacteristic = carCharacteristicRepository.findById(id);
-        return getCharacteristic.orElse(null);
+        return getCharacteristic.orElseThrow(CarException::new);
     }
 
     public List<CarCharacteristicValue> getAllCarCharacteristicValue() {
@@ -38,7 +39,7 @@ public class CarsService {
 
     public CarCharacteristicValue getCarCharacteristicValue(int id) {
         Optional<CarCharacteristicValue> carCharacteristicValue = carCharacteristicValueRepository.findById(id);
-        return carCharacteristicValue.orElse(null);
+        return carCharacteristicValue.orElseThrow(CarException::new);
     }
 
     public List<CarGeneration> getAllCarGeneration(){
@@ -47,7 +48,7 @@ public class CarsService {
 
     public CarGeneration getCarGeneration(int id){
         Optional<CarGeneration> carGeneration = carGenerationRepository.findById(id);
-        return carGeneration.orElse(null);
+        return carGeneration.orElseThrow(CarException::new);
     }
 
     public List<CarMark> getAllCarMarks(){
@@ -56,7 +57,7 @@ public class CarsService {
 
     public CarMark getCarMark(int id){
         Optional<CarMark> carMark = carMarkRepository.findById(id);
-        return carMark.orElse(null);
+        return carMark.orElseThrow(CarException::new);
     }
 
     public List<CarModel> getAllCarModels(){
@@ -65,7 +66,7 @@ public class CarsService {
 
     public CarModel getCarModel(int id){
         Optional<CarModel> carModel = carModelRepository.findById(id);
-        return carModel.orElse(null);
+        return carModel.orElseThrow(CarException::new);
     }
 
     public List<CarSerie> getAllCarSeries(){
@@ -74,7 +75,7 @@ public class CarsService {
 
     public CarSerie getCarSerie(int id){
         Optional<CarSerie> carSerie = carSerieRepository.findById(id);
-        return carSerie.orElse(null);
+        return carSerie.orElseThrow(CarException::new);
     }
 
     public List<CarModification> getAllCarModification(){
@@ -83,7 +84,7 @@ public class CarsService {
 
     public CarModification getCarModification(int id){
         Optional<CarModification> carModification = carModificationRepository.findById(id);
-        return carModification.orElse(null);
+        return carModification.orElseThrow(CarException::new);
     }
 
     public List<CarType> getAllCarType(){
@@ -92,6 +93,6 @@ public class CarsService {
 
     public CarType getCarType(int id){
         Optional<CarType> carType = carTypeRepository.findById(id);
-        return carType.orElse(null);
+        return carType.orElseThrow(CarException::new);
     }
 }
