@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Car_characteristic_value")
+@Table(name = "car_characteristic_value")
 @Data
 @NoArgsConstructor
 public class CarCharacteristicValue {

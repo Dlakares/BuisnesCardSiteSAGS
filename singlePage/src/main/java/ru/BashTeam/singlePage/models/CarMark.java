@@ -1,5 +1,7 @@
 package ru.BashTeam.singlePage.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
@@ -7,7 +9,7 @@ import org.hibernate.annotations.Cascade;
 import java.util.List;
 
 @Entity
-@Table(name = "Car_mark")
+@Table(name = "car_mark")
 @Data
 @NoArgsConstructor
 public class CarMark {

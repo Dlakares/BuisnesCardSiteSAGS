@@ -3,10 +3,11 @@ package ru.BashTeam.singlePage.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.BashTeam.singlePage.DTO.CarMarkDTO;
 import ru.BashTeam.singlePage.models.*;
 import ru.BashTeam.singlePage.repositories.*;
-import ru.BashTeam.singlePage.utils.CarException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class CarsService {
 
     public CarCharacteristic getCarCharacteristic(int id) {
         Optional<CarCharacteristic> getCharacteristic = carCharacteristicRepository.findById(id);
-        return getCharacteristic.orElseThrow(CarException::new);
+        return getCharacteristic.orElse(null);
     }
 
     public List<CarCharacteristicValue> getAllCarCharacteristicValue() {
@@ -39,60 +40,69 @@ public class CarsService {
 
     public CarCharacteristicValue getCarCharacteristicValue(int id) {
         Optional<CarCharacteristicValue> carCharacteristicValue = carCharacteristicValueRepository.findById(id);
-        return carCharacteristicValue.orElseThrow(CarException::new);
+        return carCharacteristicValue.orElse(null);
     }
 
-    public List<CarGeneration> getAllCarGeneration(){
+    public List<CarGeneration> getAllCarGeneration() {
         return carGenerationRepository.findAll();
     }
 
-    public CarGeneration getCarGeneration(int id){
+    public CarGeneration getCarGeneration(int id) {
         Optional<CarGeneration> carGeneration = carGenerationRepository.findById(id);
-        return carGeneration.orElseThrow(CarException::new);
+        return carGeneration.orElse(null);
     }
 
-    public List<CarMark> getAllCarMarks(){
-        return carMarkRepository.findAll();
+    public List<CarMarkDTO> getAllCarMarks() {
+        List<CarMark> carMarks = carMarkRepository.findAll();
+        List<CarMarkDTO> dto = new ArrayList<>();
+        for (CarMark mark : carMarks){
+            List<Integer> modelId = new ArrayList<>();
+            for (CarModel model : mark.getModels()){
+                modelId.add(model.getId());
+            }
+            dto.add(new CarMarkDTO(mark.getId(), mark.getName(), mark.getNameRus(), mark.getType().getId(), modelId));
+        }
+        return dto;
     }
 
-    public CarMark getCarMark(int id){
+    public CarMark getCarMark(int id) {
         Optional<CarMark> carMark = carMarkRepository.findById(id);
-        return carMark.orElseThrow(CarException::new);
+        return carMark.orElse(null);
     }
 
-    public List<CarModel> getAllCarModels(){
+    public List<CarModel> getAllCarModels() {
         return carModelRepository.findAll();
     }
 
-    public CarModel getCarModel(int id){
+    public CarModel getCarModel(int id) {
         Optional<CarModel> carModel = carModelRepository.findById(id);
-        return carModel.orElseThrow(CarException::new);
+        return carModel.orElse(null);
     }
 
-    public List<CarSerie> getAllCarSeries(){
+    public List<CarSerie> getAllCarSeries() {
         return carSerieRepository.findAll();
     }
 
-    public CarSerie getCarSerie(int id){
+    public CarSerie getCarSerie(int id) {
         Optional<CarSerie> carSerie = carSerieRepository.findById(id);
-        return carSerie.orElseThrow(CarException::new);
+        return carSerie.orElse(null);
     }
 
-    public List<CarModification> getAllCarModification(){
+    public List<CarModification> getAllCarModification() {
         return carModificationRepository.findAll();
     }
 
-    public CarModification getCarModification(int id){
+    public CarModification getCarModification(int id) {
         Optional<CarModification> carModification = carModificationRepository.findById(id);
-        return carModification.orElseThrow(CarException::new);
+        return carModification.orElse(null);
     }
 
-    public List<CarType> getAllCarType(){
+    public List<CarType> getAllCarType() {
         return carTypeRepository.findAll();
     }
 
-    public CarType getCarType(int id){
+    public CarType getCarType(int id) {
         Optional<CarType> carType = carTypeRepository.findById(id);
-        return carType.orElseThrow(CarException::new);
+        return carType.orElse(null);
     }
 }

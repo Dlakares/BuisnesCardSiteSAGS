@@ -1,5 +1,6 @@
 package ru.BashTeam.singlePage.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -10,12 +11,12 @@ import org.hibernate.annotations.Cascade;
 import java.util.List;
 
 @Entity
-@Table(name = "Car_type")
+@Table(name = "car_type")
 @Data
 @NoArgsConstructor
 public class CarType {
     @Id
-    @Column
+    @Column(name = "id_car_type")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
